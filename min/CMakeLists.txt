@@ -1,0 +1,17 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/fsolver.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/golden.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/brent.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/convergence.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/bracketing.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/quad_golden.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_min.h
+)
+
+set(min_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(min_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

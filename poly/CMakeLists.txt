@@ -1,0 +1,20 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/dd.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/eval.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/solve_quadratic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/solve_cubic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/zsolve_quadratic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/zsolve_cubic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/zsolve.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/zsolve_init.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/deriv.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_poly.h
+)
+
+set(poly_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(poly_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

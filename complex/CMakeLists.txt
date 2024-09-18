@@ -1,0 +1,15 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/math.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/inline.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_complex.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_complex_math.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_source.c
+)
+
+set(complex_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(complex_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

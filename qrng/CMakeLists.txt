@@ -1,0 +1,18 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_qrng.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/qrng.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/niederreiter-2.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/sobol.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/halton.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/reversehalton.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/inline.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_qrng.h
+)
+
+set(qrng_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(qrng_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

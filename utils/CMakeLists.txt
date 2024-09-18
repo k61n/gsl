@@ -1,0 +1,7 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/system.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/placeholder.c
+)
+
+set(utils_SOURCES ${SOURCES} PARENT_SCOPE)

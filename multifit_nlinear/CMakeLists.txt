@@ -1,0 +1,25 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/cholesky.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/convergence.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/covar.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/dogleg.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fdf.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fdfvv.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fdjac.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/lm.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/mcholesky.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qr.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/scaling.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/subspace2D.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/svd.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/trust.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_multifit_nlinear.h
+)
+
+set(multifit_nlinear_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(multifit_nlinear_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

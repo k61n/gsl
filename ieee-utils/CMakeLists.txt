@@ -1,0 +1,17 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/print.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/make_rep.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_ieee_utils.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/env.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fp.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/read.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_ieee_utils.h
+)
+
+set(ieee-utils_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(ieee-utils_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

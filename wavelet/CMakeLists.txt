@@ -1,0 +1,17 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/dwt.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/wavelet.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/bspline.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/daubechies.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/haar.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_wavelet.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_wavelet2d.h
+)
+
+set(wavelet_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(wavelet_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

@@ -1,0 +1,15 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/init.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/file.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/combination.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/inline.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_combination.h
+)
+
+set(combination_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(combination_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

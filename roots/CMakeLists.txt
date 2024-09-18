@@ -1,0 +1,20 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/bisection.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/brent.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/falsepos.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/newton.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/secant.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/steffenson.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/convergence.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fsolver.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fdfsolver.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_roots.h
+)
+
+set(roots_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(roots_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

@@ -1,0 +1,56 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/cod.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/condest.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/invtri.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/invtri_complex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/multiply.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/exponential.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/tridiag.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/tridiag.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lu.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/lu_band.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/luc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/hh.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/ql.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qr.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qr_band.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qrc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qrpt.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qr_ud.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qr_ur.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qr_uu.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/qr_uz.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/rqr.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/rqrc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/lq.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/ptlq.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/svd.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/householder.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/householdercomplex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/hessenberg.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/hesstri.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/cholesky.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/choleskyc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/mcholesky.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/pcholesky.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/cholesky_band.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/ldlt.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/ldlt_band.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/symmtd.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/hermtd.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/bidiag.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/balance.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/balancemat.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/inline.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/trimult.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/trimult_complex.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_linalg.h
+)
+
+set(linalg_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(linalg_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)
