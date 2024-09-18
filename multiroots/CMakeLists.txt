@@ -1,0 +1,21 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/fdjac.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fsolver.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fdfsolver.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/convergence.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/newton.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/gnewton.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/dnewton.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/broyden.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/hybrid.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/hybridj.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_multiroots.h
+)
+
+set(multiroots_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(multiroots_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

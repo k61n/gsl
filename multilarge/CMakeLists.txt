@@ -1,0 +1,14 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/multilarge.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/normal.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/tsqr.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_multilarge.h
+)
+
+set(multilarge_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(multilarge_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

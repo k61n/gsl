@@ -1,0 +1,28 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/accel.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/akima.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/cspline.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/interp.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/linear.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/integ_eval.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/spline.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/poly.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/steffen.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/inline.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/interp2d.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/bilinear.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/bicubic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/spline2d.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_interp.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_spline.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_interp2d.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_spline2d.h
+)
+
+set(interpolation_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(interpolation_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)

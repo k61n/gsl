@@ -1,0 +1,13 @@
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/itersolve.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/gmres.c
+)
+
+set(INSTALL_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/gsl_splinalg.h
+)
+
+set(splinalg_SOURCES ${SOURCES} PARENT_SCOPE)
+
+set(splinalg_INSTALL_HEADERS ${INSTALL_HEADERS} PARENT_SCOPE)
