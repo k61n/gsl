@@ -1,0 +1,17 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  win_build:
+    name: win64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - shell: pwsh
+        run: |
+          mkdir tmp
+          cmake.exe . -G "MinGW Makefiles" -B tmp
+          cmake.exe --build tmp --parallel $env:NUMBER_OF_PROCESSORS

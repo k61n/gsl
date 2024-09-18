@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+  win_build:
+    name: win64
+    runs-on: ${{ matrix.os }}
+    needs: release
+    strategy:
+      matrix:
+        os: [windows-2019, windows-latest]
+        include:
+          - os: windows-2019
+            config: gcc810
+          - os: windows-latest
+            config: gcc1220
+    steps:
+      - uses: actions/checkout@v4
+      - shell: pwsh
+        run: |
+          mkdir tmp
+          mkdir gslinstall
+          cmake.exe . -G "MinGW Makefiles" -B tmp -DCMAKE_INSTALL_PREFIX="gslinstall/gsl"
+          cmake.exe --build tmp --parallel $env:NUMBER_OF_PROCESSORS
+          cmake.exe --install tmp
+          Compress-Archive -Path gslinstall/gsl -DestinationPath gsl_${{ matrix.config }}_64.zip
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.release.outputs.upload_url }}
+          asset_path: gsl_${{ matrix.config }}_64.zip
+          asset_name: gsl_${{ matrix.config }}_64.zip
+          asset_content_type: application/octet-stream
