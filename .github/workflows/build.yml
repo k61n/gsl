@@ -1,0 +1,17 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  win_build:
+    name: win64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - shell: powershell
+        run: |
+          mkdir tmp
+          cmake.exe . -G "Unix Makefiles" -DCMAKE_MAKE_PROGRAM="mingw32-make.exe" -B tmp
+          cmake.exe --build tmp --parallel $env:NUMBER_OF_PROCESSORS
