@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{steps.create_release.outputs.upload_url}}
+    steps:
+      - id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name: ${{github.ref}}
+          release_name: ${{github.ref}}
+          draft: false
+          prerelease: false
+
+  windows:
+    needs: release
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        include:
+          - os: windows-2019
+            config: msvc2019
+            vspath: C:\Program Files\Microsoft Visual Studio\2019\Enterprise
+            arch: x64
+          - os: windows-2022
+            config: msvc2022
+            vspath: C:\Program Files\Microsoft Visual Studio\2022\Enterprise
+            arch: x64
+          - os: windows-arm64
+            config: msvc2022
+            vspath: _
+            arch: arm64
+    steps:
+      - uses: actions/checkout@v4
+      - shell: cmd
+        run: |
+          if "${{matrix.arch}}"=="x64" call "${{matrix.vspath}}\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.arch}}
+          mkdir tmp
+          mkdir gslinstall
+          cmake . -B tmp ^
+            -DBUILD_SHARED_LIBS=ON ^
+            -DCMAKE_INSTALL_PREFIX="gsl_${{matrix.config}}_${{matrix.arch}}"
+          cmake --build tmp --config Release
+          cmake --install tmp
+          7z a -tzip gsl_${{matrix.config}}_${{matrix.arch}}.zip gsl_${{matrix.config}}_${{matrix.arch}}
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{needs.release.outputs.upload_url}}
+          asset_path: gsl_${{matrix.config}}_${{matrix.arch}}.zip
+          asset_name: gsl_${{matrix.config}}_${{matrix.arch}}.zip
+          asset_content_type: application/octet-stream
