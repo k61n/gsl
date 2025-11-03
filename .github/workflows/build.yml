@@ -1,0 +1,66 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  release_draft:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      release_id: ${{steps.release_draft.outputs.release_id}}
+    steps:
+      - uses: actions/checkout@v4
+      - id: release_draft
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          version="$(grep '^#define GSL_VERSION' gsl_version.h | sed -E 's/.*"([0-9.]+)".*/\1/')"
+          tagexists="$(gh release list --limit 10 --json tagName \
+            --jq ".[] | select (.tagName==\"v${version}\") | .tagName")"
+          if [ -z "${tagexists}" ]; then
+            gh release create "v${version}" \
+              --target master \
+              --draft \
+              --title "v${version}" \
+              --notes ""
+          fi
+          release_id="$(gh release view "v${version}" --json databaseId --jq .databaseId)"
+          echo "release_id=${release_id}" >> "$GITHUB_OUTPUT"
+
+  windows:
+    needs: release_draft
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        include:
+          - os: windows-2022
+            arch: x64
+          - os: windows-11-arm
+            arch: arm64
+    steps:
+      - uses: actions/checkout@v4
+      - shell: cmd
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" ${{matrix.arch}}
+          mkdir tmp
+          cmake . -B tmp ^
+            -DBUILD_SHARED_LIBS=ON ^
+            -DCMAKE_INSTALL_PREFIX="gsl_msvc2022_${{matrix.arch}}"
+          cmake --build tmp --config Release
+          cmake --install tmp
+          7z a -tzip gsl_msvc2022_${{matrix.arch}}.zip gsl_msvc2022_${{matrix.arch}}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gsl_msvc2022_${{matrix.arch}}.zip
+          path: gsl_msvc2022_${{matrix.arch}}.zip
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          file:       gsl_msvc2022_${{matrix.arch}}.zip
+          asset_name: gsl_msvc2022_${{matrix.arch}}.zip
+          release_id: ${{needs.release_draft.outputs.release_id}}
+          overwrite:  true
